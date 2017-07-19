@@ -607,12 +607,12 @@ EOD;
    */
   public static function mimeHeaderEncode($string) {
     if (preg_match('/[^\x20-\x7E]/', $string)) {
-      $chunk_size = 47; // floor((75 - strlen("=?UTF-8?B??=")) * 0.75);
+      $chunk_size = 94; // floor((75 - strlen("=?UTF-8?B??=")) * 0.75);
       $len = strlen($string);
       $output = '';
       while ($len > 0) {
         $chunk = static::truncateBytes($string, $chunk_size);
-        $output .= ' =?UTF-8?B?' . base64_encode($chunk) . "?=\r";
+        $output .= ' =?UTF-8?B?' . base64_encode($chunk) . "?=\n";
         $c = strlen($chunk);
         $string = substr($string, $c);
         $len -= $c;
