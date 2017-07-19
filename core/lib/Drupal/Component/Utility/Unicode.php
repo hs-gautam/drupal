@@ -612,7 +612,7 @@ EOD;
       $output = '';
       while ($len > 0) {
         $chunk = static::truncateBytes($string, $chunk_size);
-        $output .= ' =?UTF-8?B?' . base64_encode($chunk) . "?=\n";
+        $output .= ' =?UTF-8?B?' . base64_encode($chunk) . "?=\r";
         $c = strlen($chunk);
         $string = substr($string, $c);
         $len -= $c;
